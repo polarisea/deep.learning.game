@@ -20,7 +20,7 @@ def game():
     pygame.init()
 
 # Height and Width 
-    HEIGHT = int(pygame.display.Info().current_h * 0.6)
+    HEIGHT = int(pygame.display.Info().current_h * 0.8)
     WIDTH  = int(HEIGHT * ratio)
 
 # Fps setting
@@ -65,7 +65,7 @@ def game():
     ball_radius = HEIGHT/35
     ball_speed = 3
     ball_rect = int(ball_radius * 2 ** 0.5)
-    ball = pygame.Rect(rnd(ball_rect, WIDTH - ball_rect),
+    ball = pygame.Rect(rnd(2*ball_rect, WIDTH -2*ball_rect),
                     HEIGHT // 2, ball_rect, ball_rect)
 # Direct setting
     dx = 1 
@@ -107,7 +107,7 @@ def game():
                         paddle_h - paddle_margin_bottom, paddle_w, paddle_h)
     # Reset ball & direct
         nonlocal ball, dx, dy
-        ball = pygame.Rect(rnd(ball_rect, WIDTH - ball_rect),
+        ball = pygame.Rect(rnd(2*ball_rect, WIDTH - 2*ball_rect),
                         HEIGHT // 2, ball_rect, ball_rect)
         dx, dy = 1, -1
         
@@ -189,10 +189,8 @@ def game():
         # Win, game over
             if ball.bottom > HEIGHT:
                 status = 'lose'
-                print("Lose")
                 reset()
             elif not len(block_list):
-                print("Win")
                 status = 'win'
                 reset()
                 continue
